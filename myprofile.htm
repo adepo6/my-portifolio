@@ -1,365 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adane Desalegn — Developer & Designer</title>
-<meta name="description" content="Adane Desalegn — Software Engineering student and creative designer." />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-  :root{
-    /* === Design tokens - Brown Palette === */
-    --bg:            #1A120B; /* Darkest brown */
-    --bg-soft:       #2A1D13; /* Slightly lighter brown */
-    --surface:       rgba(123, 74, 30, 0.1);
-    --surface-brd:   rgba(123, 74, 30, 0.3);
-    --text:          #F0E5D8; /* Off-white/cream for text */
-    --text-dim:      #C8B6A6; /* Dimmer text */
-    --text-faint:    #8B7E74; /* Faintest text */
-
-    /* The requested brown color */
-    --primary-brown: #7B4A1E;
-    --accent-gold:   #D4A373; /* Complementary warm accent */
-    --accent-orange: #E28413; /* For highlights */
-
-    --grad-signature: linear-gradient(97deg, var(--accent-gold) 0%, var(--primary-brown) 50%, var(--accent-orange) 100%);
-
-    --font-display: 'Bricolage Grotesque', sans-serif;
-    --font-mono:    'IBM Plex Mono', monospace;
-    --font-body:    'Inter', sans-serif;
-
-    --radius: 16px;
-    --ease: cubic-bezier(.16,.84,.44,1);
-  }
-
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
-  }
-
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:var(--font-body);
-    line-height:1.6;
-    overflow-x:hidden;
-    position:relative;
-  }
-
-  /* ambient background grid + glow */
-  .bg-fx{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background-image:
-      radial-gradient(circle at 15% 50%, rgba(123, 74, 30, 0.15), transparent 50%),
-      radial-gradient(circle at 85% 30%, rgba(212, 163, 115, 0.1), transparent 50%);
-  }
-  .bg-fx::after{
-    content:'';
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-    background-size:40px 40px;
-    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent 80%);
-  }
-
-  section, header, footer{ position:relative; z-index:1; }
-  .wrap{ max-width:1100px; margin:0 auto; padding:0 24px; }
-
-  a{ color:inherit; text-decoration:none; }
-  ::selection{ background:var(--primary-brown); color:#fff; }
-
-  /* === eyebrow / labels === */
-  .eyebrow{
-    font-family:var(--font-mono);
-    font-size:13px;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--accent-gold);
-    margin-bottom:16px;
-    display:inline-block;
-    border-bottom: 1px solid var(--primary-brown);
-    padding-bottom: 4px;
-  }
-
-  /* === NAV === */
-  nav{
-    position:fixed; top:0; left:0; right:0; z-index:50;
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    background:rgba(26, 18, 11, 0.8);
-    border-bottom:1px solid var(--surface-brd);
-  }
-  .nav-inner{
-    max-width:1100px; margin:0 auto; padding:16px 24px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .logo{
-    font-family:var(--font-display); font-weight:700; font-size:20px;
-    color: var(--text);
-  }
-  .logo span{ color:var(--accent-gold); }
-  .nav-links{ display:flex; gap:24px; }
-  .nav-links a{
-    font-size:14px; color:var(--text-dim); font-weight:500;
-    transition:color .2s;
-  }
-  .nav-links a:hover{ color:var(--text); }
-  @media(max-width:768px){ .nav-links{ display:none; } }
-
-  /* === BUTTONS === */
-  .btn{
-    font-family:var(--font-body); font-weight:600; font-size:15px;
-    padding:12px 24px; border-radius:8px; display:inline-flex; align-items:center; gap:8px;
-    transition:all .2s var(--ease); cursor:pointer; border:1px solid transparent;
-  }
-  .btn-primary{
-    background:var(--primary-brown); color:var(--text);
-  }
-  .btn-primary:hover{ background:var(--accent-gold); color:var(--bg); }
-  .btn-ghost{
-    background:transparent; border-color:var(--primary-brown); color:var(--text);
-  }
-  .btn-ghost:hover{ background:var(--surface); }
-
-  /* */
-  /* === HERO === */
-  header.hero{ padding:140px 0 80px; min-height: 85vh; display:flex; align-items:center; }
-  .hero-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
-  }
-  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; text-align:center; } }
-
-  h1.hero-title{
-    font-family:var(--font-display); font-weight:700;
-    font-size:clamp(40px, 5vw, 64px); line-height:1.1;
-    margin-bottom:20px;
-  }
-  h1.hero-title span{ color:var(--accent-gold); }
-
-  .hero-sub{
-    font-size:18px; color:var(--text-dim); margin-bottom:30px;
-    max-width: 480px;
-  }
-  @media(max-width:900px){ .hero-sub{ margin-left:auto; margin-right:auto; } }
-
-  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
-  @media(max-width:900px){ .hero-ctas{ justify-content:center; } }
-
-  /* Profile Image */
-  .profile-wrap{
-    position:relative; width:100%; max-width:400px; margin:0 auto;
-    border-radius:24px; overflow:hidden;
-    border: 4px solid var(--primary-brown);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  }
-  .profile-wrap img{
-    width:100%; height:auto; display:block;
-    aspect-ratio: 3/4; object-fit: cover;
-  }
-
-  /* */
-  section{ padding:100px 0; border-top:1px solid var(--surface-brd); }
-  h2.section-title{
-    font-family:var(--font-display); font-weight:600;
-    font-size:clamp(32px, 4vw, 48px); margin-bottom:40px;
-  }
-
-  /* === ABOUT === */
-  .about-content{
-    display:grid; grid-template-columns:3fr 2fr; gap:40px;
-  }
-  @media(max-width:800px){ .about-content{ grid-template-columns:1fr; } }
-  .about-text{ font-size:17px; color:var(--text-dim); }
-  .about-text p{ margin-bottom: 16px; }
-
-  .skills-list{
-    display:flex; flex-wrap:wrap; gap:10px; margin-top:20px;
-  }
-  .skill-tag{
-    font-family:var(--font-mono); font-size:13px;
-    padding:6px 12px; border-radius:6px;
-    background:var(--surface); border:1px solid var(--primary-brown);
-    color:var(--accent-gold);
-  }
-
-  /* */
-  /* === SHOWCASE === */
-  .showcase-grid{
-    display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:30px;
-  }
-  .work-card{
-    background:var(--bg-soft); border-radius:16px; overflow:hidden;
-    border:1px solid var(--surface-brd);
-    transition:transform .3s;
-  }
-  .work-card:hover{ transform:translateY(-5px); border-color:var(--accent-gold); }
-  .work-img{
-    width:100%; aspect-ratio:16/9; object-fit:cover; display:block;
-    border-bottom:1px solid var(--surface-brd);
-  }
-  /* Specific styling for the provided images to ensure they aren't cropped poorly */
-  .work-img.portrait {
-      aspect-ratio: 9/16;
-  }
-  .work-info{ padding:20px; }
-  .work-info h3{ font-family:var(--font-display); font-size:20px; margin-bottom:8px; }
-  .work-info p{ font-size:14px; color:var(--text-dim); }
-
-  /* === CONTACT === */
-  .contact-box{
-    background:var(--bg-soft); padding:40px; border-radius:24px;
-    border:1px solid var(--primary-brown);
-    text-align:center; max-width:600px; margin:0 auto;
-  }
-  .contact-box p{ margin-bottom: 24px; color:var(--text-dim); }
-
-  footer{
-    padding:40px 0; text-align:center; font-family:var(--font-mono);
-    font-size:13px; color:var(--text-faint);
-  }
-
-</style>
-</head>
-<body>
-
-<div class="bg-fx"></div>
-
-<nav>
-  <div class="nav-inner">
-    <div class="logo">Adane<span>.</span></div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <h1 class="hero-title">Software Engineer<br>& <span>Creative Designer</span></h1>
-      <p class="hero-sub">
-        I build robust software and craft compelling visual designs. Bridging the gap between clean code and striking aesthetics.
-      </p>
-      <div class="hero-ctas">
-        <a href="#work" class="btn btn-primary">See My Work</a>
-        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-      </div>
-    </div>
-    <div class="profile-wrap">
-      <img src="../my-portifolio/images/my pro.JPG" alt="Adane Desalegn" loading="lazy" />
-    </div>
-  </div>
-</header>
-
-<section id="about">
-  <div class="wrap">
-    <div class="eyebrow">About Me</div>
-    <div class="about-content">
-      <div class="about-text">
-        <h2 class="section-title">Logic meets creativity.</h2>
-        <p>I am a 3rd-year Software Engineering student at AASTU. I split my time between writing clean, efficient code and creating engaging digital content.</p>
-        <p>Whether it's developing full-stack web applications or designing eye-catching graphics and motion videos, my goal is always to deliver impactful solutions.</p>
-      </div>
-      <div>
-        <h3 style="font-family:var(--font-mono); margin-bottom:16px; color:var(--text);">Core Skills</h3>
-        <div class="skills-list">
-          <span class="skill-tag">JavaScript / React</span>
-          <span class="skill-tag">Node.js / Express</span>
-          <span class="skill-tag">Graphic Design</span>
-          <span class="skill-tag">Video Editing</span>
-          <span class="skill-tag">UI/UX Design</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="work">
-  <div class="wrap">
-    <div class="eyebrow">Selected Work</div>
-    <h2 class="section-title">Design Showcase</h2>
-
-    <div class="showcase-grid">
-      <!-- Item 1 -->
-      <div class="work-card">
-        <img src="../my-portifolio/images/mycase1.webp" alt="Design Showcase 1" class="work-img" loading="lazy">
-        <div class="work-info">
-          <h3>Unf*ck Your Brain</h3>
-          <p>Thumbnail/Graphic Design</p>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="work-card">
-        <img src="../my-portifolio/images/mycase2.webp" alt="Design Showcase 2" class="work-img" loading="lazy">
-        <div class="work-info">
-          <h3>Get Rich</h3>
-          <p>Thumbnail/Graphic Design</p>
-        </div>
-      </div>
-
-       <!-- Item 3 -->
-       <div class="work-card">
-        <img src="../my-portifolio/images/mycase3.webp" alt="Design Showcase 3" class="work-img" loading="lazy">
-        <div class="work-info">
-          <h3>TOP G</h3>
-          <p>Thumbnail/Graphic Design</p>
-        </div>
-      </div>
-
-      <!-- Item 4 (Banner style) -->
-      <div class="work-card" style="grid-column: 1 / -1;">
-        <img src="../my-portifolio/images/mycase5.webp" alt="Design Showcase 4" class="work-img" style="aspect-ratio: auto; max-height: 300px;" loading="lazy">
-        <div class="work-info">
-          <h3>Fortnite Banner Design</h3>
-          <p>Channel Art / Banner</p>
-        </div>
-      </div>
-
-      <!-- Item 5 (Portrait style) -->
-      <div class="work-card">
-        <img src="../my-portifolio/images/showcase-007-1080.webp" alt="Design Showcase 5" class="work-img portrait" loading="lazy">
-        <div class="work-info">
-          <h3>Biggest Scam</h3>
-          <p>Vertical Format Graphic/Thumbnail</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-box">
-      <h2 class="section-title" style="margin-bottom: 16px;">Let's Work Together</h2>
-      <p>Currently available for freelance projects and part-time roles.</p>
-      <a href="mailto:ladanedealegn@gmail.com" class="btn btn-primary">Email Me</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <p>© 2026 Adane Desalegn. Built with code.</p>
-  </div>
-</footer>
-
-</body>
-</html> -->
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -515,7 +153,6 @@
     min-height: 85vh; 
     display:flex; 
     align-items:center;
-    background: linear-gradient(rgba(26, 18, 11, 0.82), rgba(26, 18, 11, 0.82)), url('../my-portifolio/images/mycase5.jpg'), url('mycase5.jpg') center/cover no-repeat;
   }
   .hero-grid{
     display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
@@ -543,17 +180,23 @@
   }
   @media(max-width:900px){ .hero-meta{ justify-content:center; } }
 
-  /* Profile Frame */
+  /* Profile Frame with mycase5 as dedicated Background Image */
   .profile-wrap{
     position:relative; width:100%; max-width:380px; margin:0 auto;
     border-radius:24px; overflow:hidden;
     border: 3px solid var(--primary-brown);
     box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-    background-color: var(--bg-soft);
+    background-image: linear-gradient(rgba(26, 18, 11, 0.4), rgba(26, 18, 11, 0.6)), url('../my-portifolio/images/mycase5.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 16px;
   }
   .profile-wrap img{
     width:100%; height:auto; display:block;
     aspect-ratio: 3/4; object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid rgba(212, 163, 115, 0.4);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
   }
 
   section{ padding:90px 0; border-top:1px solid var(--surface-brd); }
@@ -564,24 +207,6 @@
   }
   .section-desc {
     font-size: 15px; color: var(--text-dim); max-width: 650px; margin-top: 6px;
-  }
-
-  /* Filter Tabs */
-  .showcase-tabs {
-    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
-  }
-  .tab-btn {
-    font-family: var(--font-mono); font-size: 13px;
-    padding: 8px 16px; border-radius: 999px;
-    border: 1px solid var(--surface-brd);
-    background: var(--bg-soft); color: var(--text-dim);
-    cursor: pointer; transition: all 0.25s var(--ease);
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .tab-btn:hover { color: var(--text); border-color: var(--accent-gold); }
-  .tab-btn.active {
-    background: var(--primary-brown); color: #fff;
-    border-color: var(--accent-gold); font-weight: 600;
   }
 
   .showcase-grid{
@@ -599,7 +224,6 @@
     transform:translateY(-5px); border-color:var(--accent-gold);
     box-shadow: 0 12px 30px rgba(0,0,0,0.4);
   }
-  .work-card.hidden { display: none !important; }
 
   /* Media Containers */
   .work-media-container {
@@ -610,9 +234,6 @@
   }
   .work-media-container.portrait {
     aspect-ratio: 9/16; max-height: 460px; margin: 0 auto;
-  }
-  .work-media-container.banner {
-    aspect-ratio: 21/9;
   }
 
   .work-img {
@@ -647,7 +268,7 @@
     border: 1px solid var(--primary-brown); backdrop-filter: blur(4px);
   }
 
-  .work-info{ padding:20px; flex-grow: 1; display: flex; flex-direction: column; justify-space-between; }
+  .work-info{ padding:20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
   .work-info h3{ font-family:var(--font-display); font-size:18px; margin-bottom:6px; color: var(--text); }
   .work-info p{ font-size:13.5px; color:var(--text-dim); margin-bottom: 14px; line-height: 1.5; }
 
@@ -746,7 +367,7 @@
         Building robust software and crafting compelling visual designs. Bridging the gap between clean code and striking aesthetics.
       </p>
       <div class="hero-ctas">
-        <a href="#portfolio-showcase" class="btn btn-primary"><i class="fa-solid fa-clapperboard"></i> See My Work</a>
+        <a href="#video-editing" class="btn btn-primary"><i class="fa-solid fa-clapperboard"></i> See My Work</a>
         <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
       </div>
       <div class="hero-meta" style="margin-top: 24px;">
@@ -754,6 +375,7 @@
         <div style="display:flex; align-items:center; gap:6px;"><i class="fa-solid fa-laptop-code" style="color:var(--accent-gold);"></i> Remote Work Ready</div>
       </div>
     </div>
+    <!-- Profile Frame with mycase5 as background -->
     <div class="profile-wrap">
       <img src="../my-portifolio/images/my pro.JPG" onerror="this.onerror=null; this.src='../my-portifolio/images/my pro.JPG';" alt="Adane Desalegn" loading="lazy" />
     </div>
@@ -777,30 +399,22 @@
   </div>
 </section>
 
-<section id="portfolio-showcase">
+<!-- SECTION 1: VIDEO EDITING -->
+<section id="video-editing">
   <div class="wrap">
-    <div class="eyebrow">Selected Work</div>
+    <div class="eyebrow">Portfolio Section</div>
     <div class="section-header">
-      <h2 class="section-title">Design & Engineering Showcase</h2>
-      <p class="section-desc">Filter by category to explore video edits, web applications, motion graphics, and graphic design projects.</p>
-    </div>
-
-    <!-- Navigation Filter Tabs -->
-    <div class="showcase-tabs">
-      <button class="tab-btn active" data-filter="all"><i class="fa-solid fa-grid-2"></i> All Projects</button>
-      <button class="tab-btn" data-filter="video"><i class="fa-solid fa-film"></i> Video Editing (4)</button>
-      <button class="tab-btn" data-filter="web"><i class="fa-solid fa-globe"></i> Web Dev (4)</button>
-      <button class="tab-btn" data-filter="motion"><i class="fa-solid fa-bolt"></i> Motion Graphics (2)</button>
-      <button class="tab-btn" data-filter="design"><i class="fa-solid fa-image"></i> Graphic Design (5)</button>
+      <h2 class="section-title">Video Editing</h2>
+      <p class="section-desc">Short-form social edits, Reels, and cinematic video productions engineered for high audience retention.</p>
     </div>
 
     <div class="showcase-grid">
 
-      <!-- Video Edit 1: Ronaldinho Reel (Vertical 9:16) -->
-      <div class="work-card" data-category="video" id="video-editing">
+      <!-- Video Edit 1: Ronaldinho Reel -->
+      <div class="work-card">
         <div class="work-media-container portrait">
           <span class="badge-tag">Reel . MP4</span>
-          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Ronaldinho+%24100M+Reel+(video1.mp4)">
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Ronaldinho+%24100M+Reel">
             <source src="../my-portifolio/videos/mycase10.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
@@ -816,11 +430,11 @@
         </div>
       </div>
 
-      <!-- Video Edit 2: Jeremy Kahan Scams (Vertical 9:16) -->
-      <div class="work-card" data-category="video">
+      <!-- Video Edit 2: Crypto Story Edit -->
+      <div class="work-card">
         <div class="work-media-container portrait">
           <span class="badge-tag">Short . MP4</span>
-          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Jeremy+Kahan+Edit+(video2.mp4)">
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Jeremy+Kahan+Edit">
             <source src="../my-portifolio/videos/mycase8.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
@@ -836,11 +450,11 @@
         </div>
       </div>
 
-      <!-- Video Edit 3: Trading Psychology (Vertical 9:16) -->
-      <div class="work-card" data-category="video">
+      <!-- Video Edit 3: Trading Psychology -->
+      <div class="work-card">
         <div class="work-media-container portrait">
           <span class="badge-tag">Short . MP4</span>
-          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Trading+Mindset+Reel+(video3.mp4)">
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Trading+Mindset+Reel">
             <source src="../my-portifolio/videos/showcase-004.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
@@ -856,11 +470,11 @@
         </div>
       </div>
 
-      <!-- Video Edit 4: Hawassa Cinematic (Landscape 16:9) -->
-      <div class="work-card" data-category="video">
+      <!-- Video Edit 4: Hawassa Cinematic -->
+      <div class="work-card">
         <div class="work-media-container">
           <span class="badge-tag">Cinematic . MP4</span>
-          <video controls preload="metadata" poster="https://placehold.co/800x450/2A1D13/D4A373?text=Hawassa+Cinematic+Edit+(video4.mp4)">
+          <video controls preload="metadata" poster="https://placehold.co/800x450/2A1D13/D4A373?text=Hawassa+Cinematic+Edit">
             <source src="../my-portifolio/videos/mycase8.mp4" type="video/mp4">
             Your browser does not support video playback.
           </video>
@@ -876,8 +490,23 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: WEB DEVELOPMENT -->
+<section id="web-dev">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio Section</div>
+    <div class="section-header">
+      <h2 class="section-title">Web Development</h2>
+      <p class="section-desc">Responsive web applications, nonprofit portals, and digital interfaces standard-crafted with modern tech stacks.</p>
+    </div>
+
+    <div class="showcase-grid">
+
       <!-- WEB DEV 1: Keffa Coffee Menu -->
-      <div class="work-card" data-category="web" id="web-dev">
+      <div class="work-card">
         <div class="browser-header">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
@@ -899,7 +528,7 @@
       </div>
 
       <!-- WEB DEV 2: Majet Charity Association -->
-      <div class="work-card" data-category="web">
+      <div class="work-card">
         <div class="browser-header">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
@@ -921,7 +550,7 @@
       </div>
 
       <!-- WEB DEV 3: Divine Spark Academy -->
-      <div class="work-card" data-category="web">
+      <div class="work-card">
         <div class="browser-header">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
@@ -943,7 +572,7 @@
       </div>
 
       <!-- WEB DEV 4: Haruma Academy -->
-      <div class="work-card" data-category="web">
+      <div class="work-card">
         <div class="browser-header">
           <span class="dot dot-red"></span>
           <span class="dot dot-yellow"></span>
@@ -964,11 +593,26 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: MOTION GRAPHICS -->
+<section id="motion">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio Section</div>
+    <div class="section-header">
+      <h2 class="section-title">Motion Graphics</h2>
+      <p class="section-desc">Dynamic visual effects, title animations, kinetic typography, and fluid movement design.</p>
+    </div>
+
+    <div class="showcase-grid">
+
       <!-- MOTION 1: UFC Knockout Visual FX -->
-      <div class="work-card" data-category="motion" id="motion">
+      <div class="work-card">
         <div class="work-media-container">
           <span class="badge-tag">Motion . MP4</span>
-          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=UFC+Ilia+Topuria+Motion+(motion1.mp4)">
+          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=UFC+Ilia+Topuria+Motion">
             <source src="../my-portifolio/motions/Final Comp.mp4" type="video/mp4">
           </video>
         </div>
@@ -984,10 +628,10 @@
       </div>
 
       <!-- MOTION 2: LiquidQuantM FX -->
-      <div class="work-card" data-category="motion">
+      <div class="work-card">
         <div class="work-media-container">
           <span class="badge-tag">Motion . MP4</span>
-          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=LiquidQuantM+FX+(motion2.mp4)">
+          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=LiquidQuantM+FX">
             <source src="../my-portifolio/motions/Final - Horizontal.mp4" type="video/mp4">
           </video>
         </div>
@@ -1002,8 +646,23 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: GRAPHIC DESIGN -->
+<section id="design">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio Section</div>
+    <div class="section-header">
+      <h2 class="section-title">Graphic & Thumbnail Design</h2>
+      <p class="section-desc">High CTR YouTube thumbnails, creative posters, and social media branding visuals.</p>
+    </div>
+
+    <div class="showcase-grid">
+
       <!-- Graphic Design 1: mycase1.webp -->
-      <div class="work-card" data-category="design" id="design">
+      <div class="work-card">
         <div class="work-media-container">
           <img src="../my-portifolio/images/mycase1.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase1.webp';" alt="Unf*ck Your Brain Thumbnail" class="work-img" loading="lazy">
         </div>
@@ -1017,7 +676,7 @@
       </div>
 
       <!-- Graphic Design 2: mycase2.webp -->
-      <div class="work-card" data-category="design">
+      <div class="work-card">
         <div class="work-media-container">
           <img src="../my-portifolio/images/mycase2.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase2.webp';" alt="Get Rich Thumbnail" class="work-img" loading="lazy">
         </div>
@@ -1031,7 +690,7 @@
       </div>
 
       <!-- Graphic Design 3: mycase3.webp -->
-      <div class="work-card" data-category="design">
+      <div class="work-card">
         <div class="work-media-container">
           <img src="../my-portifolio/images/mycase3.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase3.webp';" alt="TOP G Thumbnail" class="work-img" loading="lazy">
         </div>
@@ -1044,22 +703,8 @@
         </div>
       </div>
 
-      <!-- Graphic Design 4: mycase5.webp (Banner Style) -->
-      <div class="work-card" data-category="design" style="grid-column: 1 / -1;">
-        <div class="work-media-container banner">
-          <img src="../my-portifolio/images/mycase5.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase5.webp';" alt="Fortnite Channel Banner" class="work-img" loading="lazy">
-        </div>
-        <div class="work-info">
-          <div>
-            <h3>Fortnite Channel Banner</h3>
-            <p>Panoramic gaming header design featuring character composition, branding typography, and custom background lighting.</p>
-          </div>
-          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase5.webp</span></div>
-        </div>
-      </div>
-
-      <!-- Graphic Design 5: mycase6.webp / showcase-007 (Portrait Style) -->
-      <div class="work-card" data-category="design">
+      <!-- Graphic Design 4: mycase6.webp / showcase-007 -->
+      <div class="work-card">
         <div class="work-media-container portrait">
           <img src="../my-portifolio/images/mycase6.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/showcase-007-1080.webp';" alt="Biggest Scam Vertical Graphic" class="work-img" loading="lazy">
         </div>
@@ -1068,7 +713,7 @@
             <h3>Biggest Scam Vertical Graphic</h3>
             <p>Story format vertical graphic design optimized for mobile display and social channels.</p>
           </div>
-          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase6.webp / showcase-007</span></div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase6.webp</span></div>
         </div>
       </div>
 
@@ -1076,6 +721,7 @@
   </div>
 </section>
 
+<!-- CONTACT SECTION -->
 <section id="contact">
   <div class="wrap">
     <div class="eyebrow">Get In Touch</div>
@@ -1176,32 +822,6 @@
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const workCards = document.querySelectorAll('.work-card');
-
-    tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Active tab styling
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-
-        // Filter cards smoothly
-        workCards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-  });
-</script>
 
 <footer>
   <div class="wrap">
