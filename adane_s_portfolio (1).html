@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adane Desalegn — Software Engineer & Creative Designer</title>
+<meta name="description" content="Adane Desalegn — Software Engineering student, Video Editor, Web Developer & Graphic Designer." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- FontAwesome icons for social and UI elements -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+  :root{
+    /* === Design tokens - Rich Brown Palette === */
+    --bg:            #1A120B; /* Darkest warm brown */
+    --bg-soft:       #2A1D13; /* Lighter soft brown */
+    --surface:       rgba(123, 74, 30, 0.15);
+    --surface-brd:   rgba(123, 74, 30, 0.35);
+    --text:          #F0E5D8; /* Cream off-white */
+    --text-dim:      #C8B6A6; /* Warm muted text */
+    --text-faint:    #8B7E74; /* Faint accent text */
+
+    /* Core Palette Colors */
+    --primary-brown: #7B4A1E;
+    --accent-gold:   #D4A373;
+    --accent-orange: #E28413;
+
+    --font-display: 'Bricolage Grotesque', sans-serif;
+    --font-mono:    'IBM Plex Mono', monospace;
+    --font-body:    'Inter', sans-serif;
+
+    --radius: 16px;
+    --ease: cubic-bezier(.16,.84,.44,1);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  .bg-fx{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(circle at 15% 45%, rgba(123, 74, 30, 0.22), transparent 50%),
+      radial-gradient(circle at 85% 70%, rgba(212, 163, 115, 0.15), transparent 50%);
+  }
+  .bg-fx::after{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent 80%);
+  }
+
+  section, header, footer, nav{ position:relative; z-index:1; }
+  .wrap{ max-width:1150px; margin:0 auto; padding:0 24px; }
+
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--primary-brown); color:#fff; }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent-gold);
+    margin-bottom:12px;
+    display:inline-block;
+    border-bottom: 1px solid var(--primary-brown);
+    padding-bottom: 4px;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(39, 201, 63, 0.1);
+    border: 1px solid rgba(39, 201, 63, 0.3);
+    color: #4ade80;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+  .status-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background-color: #27C93F;
+    box-shadow: 0 0 8px #27C93F;
+    animation: pulseDot 2s infinite;
+  }
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    background:rgba(26, 18, 11, 0.85);
+    border-bottom:1px solid var(--surface-brd);
+  }
+  .nav-inner{
+    max-width:1150px; margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-display); font-weight:700; font-size:22px;
+    color: var(--text); letter-spacing: -0.02em;
+  }
+  .logo span{ color:var(--accent-gold); }
+  .nav-links{ display:flex; gap:22px; align-items: center; }
+  .nav-links a{
+    font-size:14px; color:var(--text-dim); font-weight:500;
+    transition:color .2s;
+  }
+  .nav-links a:hover{ color:var(--text); }
+  @media(max-width:820px){ .nav-links{ display:none; } }
+
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:14px;
+    padding:10px 22px; border-radius:8px; display:inline-flex; align-items:center; gap:8px;
+    transition:all .2s var(--ease); cursor:pointer; border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--primary-brown); color:var(--text);
+  }
+  .btn-primary:hover{ background:var(--accent-gold); color:var(--bg); transform: translateY(-2px); }
+  .btn-ghost{
+    background:transparent; border-color:var(--primary-brown); color:var(--text);
+  }
+  .btn-ghost:hover{ background:var(--surface); border-color: var(--accent-gold); }
+
+  header.hero{ padding:130px 0 70px; min-height: 85vh; display:flex; align-items:center; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center;
+  }
+  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr; text-align:center; } }
+
+  h1.hero-title{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(36px, 4.8vw, 60px); line-height:1.1;
+    margin-bottom:16px;
+  }
+  h1.hero-title span{ color:var(--accent-gold); }
+
+  .hero-sub{
+    font-size:17px; color:var(--text-dim); margin-bottom:28px;
+    max-width: 520px; line-height: 1.6;
+  }
+  @media(max-width:900px){ .hero-sub{ margin-left:auto; margin-right:auto; } }
+
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom: 24px; }
+  @media(max-width:900px){ .hero-ctas{ justify-content:center; } }
+
+  .hero-meta {
+    display: flex; gap: 20px; flex-wrap: wrap; font-family: var(--font-mono); font-size: 13px; color: var(--text-dim);
+  }
+  @media(max-width:900px){ .hero-meta{ justify-content:center; } }
+
+  /* Profile Frame */
+  .profile-wrap{
+    position:relative; width:100%; max-width:380px; margin:0 auto;
+    border-radius:24px; overflow:hidden;
+    border: 3px solid var(--primary-brown);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    background-color: var(--bg-soft);
+  }
+  .profile-wrap img{
+    width:100%; height:auto; display:block;
+    aspect-ratio: 3/4; object-fit: cover;
+  }
+
+  section{ padding:90px 0; border-top:1px solid var(--surface-brd); }
+  .section-header { margin-bottom: 40px; }
+  h2.section-title{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(28px, 3.5vw, 42px); color: var(--text);
+  }
+  .section-desc {
+    font-size: 15px; color: var(--text-dim); max-width: 650px; margin-top: 6px;
+  }
+
+  /* Filter Tabs */
+  .showcase-tabs {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+  }
+  .tab-btn {
+    font-family: var(--font-mono); font-size: 13px;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--surface-brd);
+    background: var(--bg-soft); color: var(--text-dim);
+    cursor: pointer; transition: all 0.25s var(--ease);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tab-btn:hover { color: var(--text); border-color: var(--accent-gold); }
+  .tab-btn.active {
+    background: var(--primary-brown); color: #fff;
+    border-color: var(--accent-gold); font-weight: 600;
+  }
+
+  .showcase-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(320px, 1fr)); gap:24px;
+  }
+  @media(max-width:640px){ .showcase-grid{ grid-template-columns: 1fr; } }
+
+  .work-card{
+    background:var(--bg-soft); border-radius:16px; overflow:hidden;
+    border:1px solid var(--surface-brd);
+    transition:transform .3s var(--ease), border-color .3s var(--ease), box-shadow .3s;
+    display: flex; flex-direction: column;
+  }
+  .work-card:hover{
+    transform:translateY(-5px); border-color:var(--accent-gold);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  .work-card.hidden { display: none !important; }
+
+  /* Media Containers */
+  .work-media-container {
+    position: relative; width: 100%; aspect-ratio: 16/9;
+    background-color: #120B06; overflow: hidden;
+    border-bottom: 1px solid var(--surface-brd);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .work-media-container.portrait {
+    aspect-ratio: 9/16; max-height: 460px; margin: 0 auto;
+  }
+  .work-media-container.banner {
+    aspect-ratio: 21/9;
+  }
+
+  .work-img {
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+
+  video {
+    width: 100%; height: 100%; object-fit: cover; background: #000;
+  }
+
+  /* Browser Bar Mockup */
+  .browser-header {
+    background: rgba(255,255,255,0.05); padding: 10px 14px;
+    display: flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid var(--surface-brd);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dot-red { background: #FF5F56; }
+  .dot-yellow { background: #FFBD2E; }
+  .dot-green { background: #27C93F; }
+  .browser-url {
+    margin-left: auto; font-family: var(--font-mono); font-size: 11px;
+    color: var(--accent-gold); opacity: 0.9;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 200px;
+  }
+
+  .badge-tag {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(26, 18, 11, 0.88); color: var(--accent-gold);
+    border: 1px solid var(--primary-brown); backdrop-filter: blur(4px);
+  }
+
+  .work-info{ padding:20px; flex-grow: 1; display: flex; flex-direction: column; justify-space-between; }
+  .work-info h3{ font-family:var(--font-display); font-size:18px; margin-bottom:6px; color: var(--text); }
+  .work-info p{ font-size:13.5px; color:var(--text-dim); margin-bottom: 14px; line-height: 1.5; }
+
+  .work-links { display: flex; gap: 14px; margin-top: auto; flex-wrap: wrap; }
+  .link-btn {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--accent-gold); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+    border-bottom: 1px dashed var(--primary-brown); padding-bottom: 2px;
+    transition: all 0.2s;
+  }
+  .link-btn:hover { color: #fff; border-bottom-color: var(--accent-gold); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px;
+  }
+  @media(max-width:850px){ .contact-grid { grid-template-columns: 1fr; } }
+
+  .contact-box{
+    background:var(--bg-soft); padding:36px; border-radius:20px;
+    border:1px solid var(--primary-brown);
+  }
+
+  .contact-list {
+    display: flex; flex-direction: column; gap: 16px; margin-top: 20px;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 14px;
+    background: var(--surface); padding: 12px 18px; border-radius: 12px;
+    border: 1px solid var(--surface-brd); transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent-gold); }
+  .contact-icon {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--primary-brown); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .contact-detail label {
+    font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+    color: var(--accent-gold); display: block;
+  }
+  .contact-detail span, .contact-detail a {
+    font-size: 15px; font-weight: 500; color: var(--text);
+  }
+  .contact-detail a:hover { color: var(--accent-gold); }
+
+  .social-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+  }
+  .social-card {
+    background: var(--bg-soft); border: 1px solid var(--surface-brd);
+    padding: 16px; border-radius: 14px; display: flex; align-items: center; gap: 12px;
+    transition: all 0.25s var(--ease);
+  }
+  .social-card:hover {
+    border-color: var(--accent-gold); transform: translateY(-3px);
+    background: var(--surface);
+  }
+  .social-card i { font-size: 20px; color: var(--accent-gold); }
+  .social-card div span { display: block; font-weight: 600; font-size: 14px; }
+  .social-card div small { font-family: var(--font-mono); font-size: 11px; color: var(--text-dim); }
+
+  footer{
+    padding:40px 0; text-align:center; font-family:var(--font-mono);
+    font-size:13px; color:var(--text-faint); border-top: 1px solid var(--surface-brd);
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-fx"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Adane<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#video-editing">Video Editing</a>
+      <a href="#web-dev">Web Dev</a>
+      <a href="#motion">Motion Graphics</a>
+      <a href="#design">Graphic Design</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="status-badge">
+        <span class="status-dot"></span> Available for Remote / Hybrid Roles (20 hrs/week)
+      </div>
+      <h1 class="hero-title">Software Engineer<br>& <span>Creative Designer</span></h1>
+      <p class="hero-sub">
+        Building robust software and crafting compelling visual designs. Bridging the gap between clean code and striking aesthetics.
+      </p>
+      <div class="hero-ctas">
+        <a href="#portfolio-showcase" class="btn btn-primary"><i class="fa-solid fa-clapperboard"></i> See My Work</a>
+        <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+      </div>
+      <div class="hero-meta" style="margin-top: 24px;">
+        <div style="display:flex; align-items:center; gap:6px;"><i class="fa-solid fa-location-dot" style="color:var(--accent-gold);"></i> Addis Ababa, Ethiopia</div>
+        <div style="display:flex; align-items:center; gap:6px;"><i class="fa-solid fa-laptop-code" style="color:var(--accent-gold);"></i> Remote Work Ready</div>
+      </div>
+    </div>
+    <div class="profile-wrap">
+      <img src="../my-portifolio/images/my pro.JPG" onerror="this.onerror=null; this.src='../my-portifolio/images/my pro.JPG';" alt="Adane Desalegn" loading="lazy" />
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About Me</div>
+    <div class="section-header">
+      <h2 class="section-title">Logic meets creativity.</h2>
+      <p class="section-desc">3rd-year Software Engineering student at AASTU. I split my time between writing clean, efficient code and creating engaging digital content.</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+      <span style="background:var(--surface); border:1px solid var(--primary-brown); color:var(--accent-gold); font-family:var(--font-mono); font-size:13px; padding:6px 14px; border-radius:6px;"><i class="fa-brands fa-js"></i> JavaScript / React</span>
+      <span style="background:var(--surface); border:1px solid var(--primary-brown); color:var(--accent-gold); font-family:var(--font-mono); font-size:13px; padding:6px 14px; border-radius:6px;"><i class="fa-solid fa-server"></i> Node.js / Express</span>
+      <span style="background:var(--surface); border:1px solid var(--primary-brown); color:var(--accent-gold); font-family:var(--font-mono); font-size:13px; padding:6px 14px; border-radius:6px;"><i class="fa-solid fa-video"></i> Video Editing & Short Form</span>
+      <span style="background:var(--surface); border:1px solid var(--primary-brown); color:var(--accent-gold); font-family:var(--font-mono); font-size:13px; padding:6px 14px; border-radius:6px;"><i class="fa-solid fa-wand-magic-sparkles"></i> Motion Graphics</span>
+      <span style="background:var(--surface); border:1px solid var(--primary-brown); color:var(--accent-gold); font-family:var(--font-mono); font-size:13px; padding:6px 14px; border-radius:6px;"><i class="fa-solid fa-palette"></i> Graphic & Thumbnail Design</span>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio-showcase">
+  <div class="wrap">
+    <div class="eyebrow">Selected Work</div>
+    <div class="section-header">
+      <h2 class="section-title">Design & Engineering Showcase</h2>
+      <p class="section-desc">Filter by category to explore video edits, web applications, motion graphics, and graphic design projects.</p>
+    </div>
+
+    <!-- Navigation Filter Tabs -->
+    <div class="showcase-tabs">
+      <button class="tab-btn active" data-filter="all"><i class="fa-solid fa-grid-2"></i> All Projects</button>
+      <button class="tab-btn" data-filter="video"><i class="fa-solid fa-film"></i> Video Editing (4)</button>
+      <button class="tab-btn" data-filter="web"><i class="fa-solid fa-globe"></i> Web Dev (4)</button>
+      <button class="tab-btn" data-filter="motion"><i class="fa-solid fa-bolt"></i> Motion Graphics (2)</button>
+      <button class="tab-btn" data-filter="design"><i class="fa-solid fa-image"></i> Graphic Design (5)</button>
+    </div>
+
+    <div class="showcase-grid">
+
+      <!-- Video Edit 1: Ronaldinho Reel (Vertical 9:16) -->
+      <div class="work-card" data-category="video" id="video-editing">
+        <div class="work-media-container portrait">
+          <span class="badge-tag">Reel . MP4</span>
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Ronaldinho+%24100M+Reel+(video1.mp4)">
+            <source src="video1.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Ronaldinho: $100M Downfall Reel</h3>
+            <p>Fast-paced vertical documentary edit with dynamic text popups, money animation, and sound design.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: video1.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Edit 2: Jeremy Kahan Scams (Vertical 9:16) -->
+      <div class="work-card" data-category="video">
+        <div class="work-media-container portrait">
+          <span class="badge-tag">Short . MP4</span>
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Jeremy+Kahan+Edit+(video2.mp4)">
+            <source src="video2.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Crypto Villain Story Edit</h3>
+            <p>High-engagement short-form story edit featuring custom frame cutouts, meme overlays, and tracking.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: video2.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Edit 3: Trading Psychology (Vertical 9:16) -->
+      <div class="work-card" data-category="video">
+        <div class="work-media-container portrait">
+          <span class="badge-tag">Short . MP4</span>
+          <video controls preload="metadata" poster="https://placehold.co/450x800/2A1D13/D4A373?text=Trading+Mindset+Reel+(video3.mp4)">
+            <source src="video3.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Trading Mindset & Analysis</h3>
+            <p>Sleek chart breakdown with animated caption sync, candle animations, and clean color grading.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: video3.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Edit 4: Hawassa Cinematic (Landscape 16:9) -->
+      <div class="work-card" data-category="video">
+        <div class="work-media-container">
+          <span class="badge-tag">Cinematic . MP4</span>
+          <video controls preload="metadata" poster="https://placehold.co/800x450/2A1D13/D4A373?text=Hawassa+Cinematic+Edit+(video4.mp4)">
+            <source src="video4.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Hawassa Cinematic Visual Edit</h3>
+            <p>Cinematic widescreen promo featuring smooth transitions, title typography, and atmospheric audio.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: video4.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEB DEV 1: Keffa Coffee Menu -->
+      <div class="work-card" data-category="web" id="web-dev">
+        <div class="browser-header">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="browser-url">keffa-coffee-menu-rqy5.vercel.app</span>
+        </div>
+        <div class="work-media-container">
+          <img src="https://placehold.co/800x450/2A1D13/D4A373?text=Keffa+Coffee+Menu+Web+App" alt="Keffa Coffee Menu" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Keffa Coffee Digital Menu</h3>
+            <p>Interactive web application for coffee menu browsing, featuring sleek UI, item categorization, and responsive layout.</p>
+          </div>
+          <div class="work-links">
+            <a href="https://keffa-coffee-menu-rqy5.vercel.app/" class="link-btn" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live App ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEB DEV 2: Majet Charity Association -->
+      <div class="work-card" data-category="web">
+        <div class="browser-header">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="browser-url">majet-charity.org</span>
+        </div>
+        <div class="work-media-container">
+          <img src="https://placehold.co/800x450/2A1D13/C8B6A6?text=Majet+Charity+Association" alt="Majet Charity Website" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Majet Charity Association</h3>
+            <p>Nonprofit web platform featuring program highlights, community outreach stories, and donation integration.</p>
+          </div>
+          <div class="work-links">
+            <a href="majet_charity_association.html" class="link-btn" target="_blank"><i class="fa-solid fa-code"></i> Live Demo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEB DEV 3: Divine Spark Academy -->
+      <div class="work-card" data-category="web">
+        <div class="browser-header">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="browser-url">divinespark.edu</span>
+        </div>
+        <div class="work-media-container">
+          <img src="https://placehold.co/800x450/2A1D13/C8B6A6?text=Divine+Spark+Academy" alt="Divine Spark Academy Website" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Divine Spark Academy</h3>
+            <p>Educational institution site with course directory, admissions portal, and responsive design.</p>
+          </div>
+          <div class="work-links">
+            <a href="divine_spark_academy.html" class="link-btn" target="_blank"><i class="fa-solid fa-code"></i> Live Demo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEB DEV 4: Haruma Academy -->
+      <div class="work-card" data-category="web">
+        <div class="browser-header">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+          <span class="browser-url">haruma-academy.com</span>
+        </div>
+        <div class="work-media-container">
+          <img src="https://placehold.co/800x450/2A1D13/C8B6A6?text=Haruma+Academy" alt="Haruma Academy Website" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Haruma Academy</h3>
+            <p>Academy website platform built with clean UI, announcements grid, and contact form integration.</p>
+          </div>
+          <div class="work-links">
+            <a href="haruma_academy_website.html" class="link-btn" target="_blank"><i class="fa-solid fa-code"></i> Live Demo ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTION 1: UFC Knockout Visual FX -->
+      <div class="work-card" data-category="motion" id="motion">
+        <div class="work-media-container">
+          <span class="badge-tag">Motion . MP4</span>
+          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=UFC+Ilia+Topuria+Motion+(motion1.mp4)">
+            <source src="motion1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>UFC Knockout Visual Edit</h3>
+            <p>Action-packed motion design with glass shattering effects, impact overlays, and kinetic text.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: motion1.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOTION 2: LiquidQuantM FX -->
+      <div class="work-card" data-category="motion">
+        <div class="work-media-container">
+          <span class="badge-tag">Motion . MP4</span>
+          <video controls autoplay loop muted playsinline poster="https://placehold.co/800x450/2A1D13/E28413?text=LiquidQuantM+FX+(motion2.mp4)">
+            <source src="motion2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>LiquidQuantM Brand Motion</h3>
+            <p>Atmospheric horror/thriller motion graphics with custom liquid typography and glow effects.</p>
+          </div>
+          <div class="work-links">
+            <span class="link-btn"><i class="fa-solid fa-file-video"></i> File: motion2.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphic Design 1: mycase1.webp -->
+      <div class="work-card" data-category="design" id="design">
+        <div class="work-media-container">
+          <img src="mycase1.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase1.webp';" alt="Unf*ck Your Brain Thumbnail" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Unf*ck Your Brain</h3>
+            <p>High CTR YouTube Thumbnail Design featuring high contrast subject isolation and bold typography.</p>
+          </div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase1.webp</span></div>
+        </div>
+      </div>
+
+      <!-- Graphic Design 2: mycase2.webp -->
+      <div class="work-card" data-category="design">
+        <div class="work-media-container">
+          <img src="mycase2.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase2.webp';" alt="Get Rich Thumbnail" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Get Rich Concept</h3>
+            <p>Finance & self-improvement YouTube thumbnail with dollar element graphics and vignette.</p>
+          </div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase2.webp</span></div>
+        </div>
+      </div>
+
+      <!-- Graphic Design 3: mycase3.webp -->
+      <div class="work-card" data-category="design">
+        <div class="work-media-container">
+          <img src="mycase3.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase3.webp';" alt="TOP G Thumbnail" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>TOP G Creative Design</h3>
+            <p>Creative social media graphic with dramatic lighting, custom glow accents, and color grading.</p>
+          </div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase3.webp</span></div>
+        </div>
+      </div>
+
+      <!-- Graphic Design 4: mycase5.webp (Banner Style) -->
+      <div class="work-card" data-category="design" style="grid-column: 1 / -1;">
+        <div class="work-media-container banner">
+          <img src="mycase5.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/mycase5.webp';" alt="Fortnite Channel Banner" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Fortnite Channel Banner</h3>
+            <p>Panoramic gaming header design featuring character composition, branding typography, and custom background lighting.</p>
+          </div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase5.webp</span></div>
+        </div>
+      </div>
+
+      <!-- Graphic Design 5: mycase6.webp / showcase-007 (Portrait Style) -->
+      <div class="work-card" data-category="design">
+        <div class="work-media-container portrait">
+          <img src="mycase6.webp" onerror="this.onerror=null; this.src='../my-portifolio/images/showcase-007-1080.webp';" alt="Biggest Scam Vertical Graphic" class="work-img" loading="lazy">
+        </div>
+        <div class="work-info">
+          <div>
+            <h3>Biggest Scam Vertical Graphic</h3>
+            <p>Story format vertical graphic design optimized for mobile display and social channels.</p>
+          </div>
+          <div class="work-links"><span class="link-btn"><i class="fa-solid fa-file-image"></i> File: mycase6.webp / showcase-007</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Get In Touch</div>
+    <div class="section-header">
+      <h2 class="section-title">Let's Work Together</h2>
+      <p class="section-desc">Currently available for freelance projects, video editing contracts, web development, and remote or hybrid roles (up to 20 hours/week).</p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Direct Contact Box -->
+      <div class="contact-box">
+        <h3 style="font-family:var(--font-display); font-size:20px; margin-bottom:12px; color: var(--text);">Contact Information</h3>
+        <p style="color:var(--text-dim); font-size:14px; margin-bottom:20px;">Feel free to reach out directly via email, phone, or messaging.</p>
+
+        <div class="contact-list">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="contact-detail">
+              <label>Email</label>
+              <a href="mailto:ladanedesalegn@gmail.com">ladanedesalegn@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contact-detail">
+              <label>Location</label>
+              <span>Addis Ababa, Ethiopia</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="contact-detail">
+              <label>Availability</label>
+              <span>Remote / Hybrid (20 hrs / week)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Social Media Handles -->
+      <div>
+        <h3 style="font-family:var(--font-display); font-size:20px; margin-bottom:16px; color: var(--text);">Social Profiles</h3>
+        <div class="social-grid">
+
+          <a href="https://instagram.com/adepo.6" target="_blank" class="social-card">
+            <i class="fa-brands fa-instagram"></i>
+            <div>
+              <span>Instagram</span>
+              <small>@adepo.6</small>
+            </div>
+          </a>
+
+          <a href="https://github.com/adepo6" target="_blank" class="social-card">
+            <i class="fa-brands fa-github"></i>
+            <div>
+              <span>GitHub</span>
+              <small>@adepo6</small>
+            </div>
+          </a>
+
+          <a href="https://tiktok.com/@adepo6" target="_blank" class="social-card">
+            <i class="fa-brands fa-tiktok"></i>
+            <div>
+              <span>TikTok</span>
+              <small>@adepo6</small>
+            </div>
+          </a>
+
+          <a href="mailto:ladanedesalegn@gmail.com" class="social-card">
+            <i class="fa-solid fa-paper-plane"></i>
+            <div>
+              <span>Direct Email</span>
+              <small>ladanedesalegn@...</small>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const workCards = document.querySelectorAll('.work-card');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Active tab styling
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
+
+        // Filter cards smoothly
+        workCards.forEach(card => {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 Adane Desalegn. Built with passion & code.</p>
+  </div>
+</footer>
+
+</body>
+</html>
