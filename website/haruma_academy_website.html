@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HARUMA Academy | Global Skills & Training in Hawassa</title>
+    <meta name="description" content="Master Languages, Technology, Creativity, and AI Skills with Industry-Focused Training in Hawassa, Ethiopia.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF5A2C',
+                        primaryHover: '#E04A20',
+                        dark: '#111111',
+                        darkLight: '#1A1A1A',
+                        light: '#F8F9FA'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Utilities */
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; }
+        
+        .nav-link { position: relative; transition: color 0.3s ease; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background-color: #FF5A2C;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #FF5A2C; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E04A20; }
+
+        /* Course Tab active state */
+        .tab-btn.active {
+            background-color: #FF5A2C;
+            color: white;
+            border-color: #FF5A2C;
+        }
+        
+        /* Accordion transition */
+        .faq-content {
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased overflow-x-hidden bg-white">
+
+    <!-- Top Bar -->
+    <div class="bg-dark text-gray-300 text-xs py-2 hidden md:block">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-map-marker-alt text-primary mr-2"></i> Hawassa, Ethiopia</span>
+                <span><i class="fas fa-phone text-primary mr-2"></i> +251 911 234 567</span>
+                <span><i class="fas fa-envelope text-primary mr-2"></i> info@harumaacademy.edu.et</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="group relative cursor-pointer">
+                    <span><i class="fas fa-globe text-primary mr-1"></i> English <i class="fas fa-chevron-down ml-1 text-[10px]"></i></span>
+                    <div class="absolute right-0 mt-2 w-32 bg-white text-dark rounded-md shadow-lg hidden group-hover:block z-50">
+                        <a href="#" class="block px-4 py-2 hover:bg-light hover:text-primary transition">Amharic</a>
+                        <a href="#" class="block px-4 py-2 hover:bg-light hover:text-primary transition">Arabic</a>
+                    </div>
+                </div>
+                <div class="border-l border-gray-600 pl-4 flex space-x-3">
+                    <a href="#" class="hover:text-primary transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-primary transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-primary transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="hover:text-primary transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 w-full transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-heading font-bold text-2xl tracking-tight text-dark">
+                        HARUMA <span class="text-primary">Academy</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center font-medium">
+                    <a href="#home" class="nav-link text-dark hover:text-primary">Home</a>
+                    <a href="#about" class="nav-link text-dark hover:text-primary">About</a>
+                    <a href="#courses" class="nav-link text-dark hover:text-primary">Courses</a>
+                    <a href="#features" class="nav-link text-dark hover:text-primary">Features</a>
+                    <a href="#contact" class="nav-link text-dark hover:text-primary">Contact</a>
+                    <a href="#" class="text-dark hover:text-primary transition"><i class="fas fa-search"></i></a>
+                </nav>
+
+                <!-- CTAs -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#" class="text-dark hover:text-primary font-medium transition flex items-center">
+                        <i class="fas fa-user-circle mr-2 text-xl"></i> Login
+                    </a>
+                    <a href="#enroll" class="bg-primary hover:bg-primaryHover text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-primary/30">
+                        Enroll Now
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-dark hover:text-primary focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-100 absolute w-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" class="block px-3 py-3 rounded-md text-base font-medium text-dark hover:text-primary hover:bg-light">Home</a>
+                <a href="#about" class="block px-3 py-3 rounded-md text-base font-medium text-dark hover:text-primary hover:bg-light">About</a>
+                <a href="#courses" class="block px-3 py-3 rounded-md text-base font-medium text-dark hover:text-primary hover:bg-light">Courses</a>
+                <a href="#features" class="block px-3 py-3 rounded-md text-base font-medium text-dark hover:text-primary hover:bg-light">Features</a>
+                <a href="#contact" class="block px-3 py-3 rounded-md text-base font-medium text-dark hover:text-primary hover:bg-light">Contact</a>
+                <div class="border-t border-gray-200 pt-4 mt-2 flex flex-col gap-3 px-3">
+                    <a href="#" class="text-center bg-gray-100 text-dark px-4 py-2 rounded-full font-medium">Student Portal Login</a>
+                    <a href="#enroll" class="text-center bg-primary text-white px-4 py-2 rounded-full font-medium">Enroll Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-20 pb-32 lg:pt-32 lg:pb-40 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Students Learning" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-r from-dark/95 via-dark/80 to-dark/40"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="lg:w-2/3" data-aos="fade-up" data-aos-duration="1000">
+                <span class="inline-block py-1 px-3 rounded-full bg-primary/20 text-primary font-medium text-sm mb-6 border border-primary/30 backdrop-blur-sm">
+                    <i class="fas fa-star mr-1"></i> Leading Training Institution in Hawassa
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold font-heading text-white leading-tight mb-6">
+                    Unlock Global <br class="hidden md:block"/>Opportunities with <span class="text-primary">HARUMA</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
+                    Master Languages, Technology, Creativity, and AI Skills with Industry-Focused Training. Empowering students and professionals for a limitless future.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#enroll" class="bg-primary hover:bg-primaryHover text-white px-8 py-4 rounded-full font-semibold text-center transition-all transform hover:-translate-y-1 shadow-lg shadow-primary/30 flex items-center justify-center">
+                        Enroll Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#courses" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-full font-semibold text-center transition-all backdrop-blur-sm flex items-center justify-center">
+                        Explore Courses
+                    </a>
+                </div>
+                
+                <div class="mt-12 flex items-center gap-6 text-white/80">
+                    <div class="flex -space-x-4">
+                        <img class="w-12 h-12 rounded-full border-2 border-dark" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop" alt="Student">
+                        <img class="w-12 h-12 rounded-full border-2 border-dark" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&auto=format&fit=crop" alt="Student">
+                        <img class="w-12 h-12 rounded-full border-2 border-dark" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop" alt="Student">
+                        <div class="w-12 h-12 rounded-full border-2 border-dark bg-primary flex items-center justify-center text-xs font-bold text-white">+2k</div>
+                    </div>
+                    <div class="text-sm">
+                        <p class="font-bold text-white">Active Learners</p>
+                        <p>Join our growing community</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10">
+            <svg class="relative block w-full h-[50px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.33,195.14,115.12c58.31-3.8,115.6-18.44,171-33C306.94,71.21,314.16,68.7,321.39,56.44Z" fill="#FFFFFF"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <!-- Images Grid -->
+                <div class="lg:w-1/2 w-full relative" data-aos="fade-right">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" alt="Campus" class="rounded-2xl w-full h-64 object-cover mt-8 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1571260899304-42507011ec7b?q=80&w=1000&auto=format&fit=crop" alt="Learning" class="rounded-2xl w-full h-64 object-cover shadow-lg">
+                    </div>
+                    <!-- Experience Badge -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 w-48 text-center justify-center">
+                        <div>
+                            <span class="block text-3xl font-bold text-primary font-heading">10+</span>
+                            <span class="text-sm font-medium text-dark">Years of Excellence</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <h4 class="text-primary font-bold tracking-wider uppercase text-sm mb-2">About HARUMA Academy</h4>
+                    <h2 class="text-3xl md:text-4xl font-bold font-heading text-dark mb-6 leading-tight">
+                        Empowering Minds, <br> Shaping Global Futures.
+                    </h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Located in the heart of Hawassa, Ethiopia, HARUMA Academy is a premier educational institution dedicated to bridging the global skills gap. We offer international-standard training in languages, cutting-edge technology, multimedia, and artificial intelligence.
+                    </p>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-light rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-dark font-heading">Our Mission</h4>
+                                <p class="text-gray-600 text-sm mt-1">To empower students, graduates, and professionals with practical, globally-demanded skills for unlimited career opportunities.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-light rounded-full flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-dark font-heading">Our Vision</h4>
+                                <p class="text-gray-600 text-sm mt-1">To be the leading hub of innovation, language mastery, and digital transformation in East Africa.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#contact" class="inline-flex items-center gap-2 text-primary font-bold hover:text-dark transition">
+                        Discover More About Us <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h4 class="text-primary font-bold tracking-wider uppercase text-sm mb-2">Our Programs</h4>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-dark mb-4">Explore Our Premium Courses</h2>
+                <p class="text-gray-600">Industry-focused curriculum designed to make you globally competitive.</p>
+            </div>
+
+            <!-- Custom Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button class="tab-btn active px-6 py-3 rounded-full border border-gray-300 font-medium transition-colors hover:border-primary hover:text-primary" onclick="openTab(event, 'tab-languages')">
+                    <i class="fas fa-language mr-2"></i> Languages
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full border border-gray-300 font-medium transition-colors hover:border-primary hover:text-primary" onclick="openTab(event, 'tab-tech')">
+                    <i class="fas fa-laptop-code mr-2"></i> Computing & IT
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full border border-gray-300 font-medium transition-colors hover:border-primary hover:text-primary" onclick="openTab(event, 'tab-dev')">
+                    <i class="fas fa-code mr-2"></i> Web & App Dev
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full border border-gray-300 font-medium transition-colors hover:border-primary hover:text-primary" onclick="openTab(event, 'tab-creative')">
+                    <i class="fas fa-palette mr-2"></i> Creative & Media
+                </button>
+                <button class="tab-btn px-6 py-3 rounded-full border border-gray-300 font-medium transition-colors hover:border-primary hover:text-primary" onclick="openTab(event, 'tab-ai')">
+                    <i class="fas fa-robot mr-2"></i> AI & Future Tech
+                </button>
+            </div>
+
+            <!-- Tab Content: Languages -->
+            <div id="tab-languages" class="tab-content block animate-[fadeIn_0.5s_ease-in-out]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Course Card -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            EN
+                        </div>
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">English Language</h3>
+                        <p class="text-gray-600 text-sm mb-6">Master conversational, academic, and business English with native-level fluency techniques.</p>
+                        <a href="#" class="text-dark font-medium group-hover:text-primary transition-colors flex items-center">Learn More <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            FR
+                        </div>
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">French Language</h3>
+                        <p class="text-gray-600 text-sm mb-6">Comprehensive French classes from DELF A1 to C2 for studies and career opportunities.</p>
+                        <a href="#" class="text-dark font-medium group-hover:text-primary transition-colors flex items-center">Learn More <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            AR
+                        </div>
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">Arabic Language</h3>
+                        <p class="text-gray-600 text-sm mb-6">Learn standard and regional Arabic for business, travel, and cultural immersion.</p>
+                        <a href="#" class="text-dark font-medium group-hover:text-primary transition-colors flex items-center">Learn More <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary text-2xl mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+                            AM
+                        </div>
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">Amharic Language</h3>
+                        <p class="text-gray-600 text-sm mb-6">Tailored programs for expats and international learners to navigate Ethiopia easily.</p>
+                        <a href="#" class="text-dark font-medium group-hover:text-primary transition-colors flex items-center">Learn More <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Tech & IT -->
+            <div id="tab-tech" class="tab-content hidden animate-[fadeIn_0.5s_ease-in-out]">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&auto=format&fit=crop" class="w-full h-40 object-cover rounded-xl mb-6" alt="Computer Skills">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">Basic Computer Skills</h3>
+                        <p class="text-gray-600 text-sm mb-4">Essential IT literacy, OS navigation, and hardware fundamentals for beginners.</p>
+                        <div class="flex justify-between items-center border-t pt-4 mt-auto">
+                            <span class="text-xs font-bold bg-light px-3 py-1 rounded-full text-dark"><i class="far fa-clock mr-1"></i> 4 Weeks</span>
+                            <a href="#" class="text-primary font-medium hover:text-dark">Enroll</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=500&auto=format&fit=crop" class="w-full h-40 object-cover rounded-xl mb-6" alt="MS Office">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">Microsoft Office Suite</h3>
+                        <p class="text-gray-600 text-sm mb-4">Advanced Word, Excel, PowerPoint, and Access for corporate administration.</p>
+                        <div class="flex justify-between items-center border-t pt-4 mt-auto">
+                            <span class="text-xs font-bold bg-light px-3 py-1 rounded-full text-dark"><i class="far fa-clock mr-1"></i> 6 Weeks</span>
+                            <a href="#" class="text-primary font-medium hover:text-dark">Enroll</a>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all group border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop" class="w-full h-40 object-cover rounded-xl mb-6" alt="Digital Literacy">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-3">Internet & Digital Literacy</h3>
+                        <p class="text-gray-600 text-sm mb-4">Navigate the web safely, manage emails, and utilize cloud collaboration tools.</p>
+                        <div class="flex justify-between items-center border-t pt-4 mt-auto">
+                            <span class="text-xs font-bold bg-light px-3 py-1 rounded-full text-dark"><i class="far fa-clock mr-1"></i> 3 Weeks</span>
+                            <a href="#" class="text-primary font-medium hover:text-dark">Enroll</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Web & App Dev -->
+            <div id="tab-dev" class="tab-content hidden animate-[fadeIn_0.5s_ease-in-out]">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <!-- Repeatable Card Structure -->
+                     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <div class="p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-xl"><i class="fab fa-react"></i></div>
+                                <span class="bg-dark text-white text-xs px-2 py-1 rounded">Popular</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-dark font-heading mb-2">Frontend Development</h3>
+                            <p class="text-gray-600 text-sm mb-4">HTML, CSS, JS, React, and Tailwind CSS to build stunning user interfaces.</p>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-xl mb-4"><i class="fab fa-node-js"></i></div>
+                            <h3 class="text-xl font-bold text-dark font-heading mb-2">Backend Development</h3>
+                            <p class="text-gray-600 text-sm mb-4">Node.js, Python, Databases, and API architecture for robust server-side apps.</p>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-xl mb-4"><i class="fas fa-layer-group"></i></div>
+                            <h3 class="text-xl font-bold text-dark font-heading mb-2">Full-Stack Bootcamp</h3>
+                            <p class="text-gray-600 text-sm mb-4">Master both frontend and backend to become an independent software engineer.</p>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-lg flex items-center justify-center text-xl mb-4"><i class="fab fa-python"></i></div>
+                            <h3 class="text-xl font-bold text-dark font-heading mb-2">Python Programming</h3>
+                            <p class="text-gray-600 text-sm mb-4">From zero to hero in Python. Automation, scripting, and web frameworks.</p>
+                        </div>
+                     </div>
+                     <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <div class="p-6">
+                            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center text-xl mb-4"><i class="fab fa-android"></i></div>
+                            <h3 class="text-xl font-bold text-dark font-heading mb-2">Mobile App Development</h3>
+                            <p class="text-gray-600 text-sm mb-4">Build cross-platform iOS and Android apps using Flutter or React Native.</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Creative -->
+            <div id="tab-creative" class="tab-content hidden animate-[fadeIn_0.5s_ease-in-out]">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-2"><i class="fas fa-pen-nib text-primary mr-2"></i> Graphic Design</h3>
+                        <p class="text-gray-600 text-sm mb-4 mt-3">Visual communication, branding, typography, and layout design principles.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-2"><i class="fas fa-image text-primary mr-2"></i> Adobe Photoshop & AI</h3>
+                        <p class="text-gray-600 text-sm mb-4 mt-3">Master industry-standard tools for photo manipulation and vector graphics.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-2"><i class="fas fa-video text-primary mr-2"></i> Video Editing</h3>
+                        <p class="text-gray-600 text-sm mb-4 mt-3">Premiere Pro and After Effects for cinematic edits and motion graphics.</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                        <h3 class="text-xl font-bold text-dark font-heading mb-2"><i class="fas fa-share-alt text-primary mr-2"></i> Social Media Content</h3>
+                        <p class="text-gray-600 text-sm mb-4 mt-3">Strategies for TikTok, Instagram, and YouTube content creation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: AI & Future Tech -->
+            <div id="tab-ai" class="tab-content hidden animate-[fadeIn_0.5s_ease-in-out]">
+                 <div class="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100 flex flex-col lg:flex-row">
+                    <div class="lg:w-2/5 relative">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop" class="w-full h-full object-cover min-h-[300px]" alt="Artificial Intelligence">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-80"></div>
+                        <h3 class="absolute bottom-6 left-6 text-2xl font-bold text-white font-heading">AI Excellence Program</h3>
+                    </div>
+                    <div class="lg:w-3/5 p-8 lg:p-12">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-bold text-dark mb-2 flex items-center"><i class="fas fa-brain text-primary mr-2"></i> Intro to AI</h4>
+                                <p class="text-sm text-gray-600">Understand the core concepts of Artificial Intelligence without coding.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark mb-2 flex items-center"><i class="fas fa-magic text-primary mr-2"></i> Generative AI Tools</h4>
+                                <p class="text-sm text-gray-600">Master ChatGPT, Midjourney, and Claude for daily productivity.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark mb-2 flex items-center"><i class="fas fa-chart-line text-primary mr-2"></i> AI for Business</h4>
+                                <p class="text-sm text-gray-600">Implement AI solutions to automate and scale modern businesses.</p>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-dark mb-2 flex items-center"><i class="fas fa-terminal text-primary mr-2"></i> Prompt Engineering</h4>
+                                <p class="text-sm text-gray-600">The art of writing perfect prompts for maximal AI output.</p>
+                            </div>
+                            <div class="sm:col-span-2 mt-4 pt-4 border-t border-gray-100">
+                                <a href="#" class="inline-block bg-dark text-white px-6 py-3 rounded-full text-sm font-bold hover:bg-primary transition-colors">Download AI Curriculum Blueprint</a>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics / Why Choose Us -->
+    <section id="features" class="py-20 bg-dark text-white relative overflow-hidden">
+        <!-- Abstract background shape -->
+        <div class="absolute top-0 right-0 -mr-32 -mt-32 w-96 h-96 rounded-full bg-primary/20 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-32 -mb-32 w-96 h-96 rounded-full bg-blue-500/20 blur-3xl"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold font-heading mb-4">Why Students Choose <span class="text-primary">HARUMA</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">We don't just teach classes; we build careers. Our statistics speak for our commitment to educational excellence.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" id="counter-section">
+                <div class="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="text-4xl font-bold font-heading mb-2"><span class="counter" data-target="50">0</span>+</div>
+                    <div class="text-gray-400 text-sm font-medium">Expert Trainers</div>
+                </div>
+                <div class="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-user-graduate"></i></div>
+                    <div class="text-4xl font-bold font-heading mb-2"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="text-gray-400 text-sm font-medium">Graduates</div>
+                </div>
+                <div class="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-certificate"></i></div>
+                    <div class="text-4xl font-bold font-heading mb-2"><span class="counter" data-target="30">0</span>+</div>
+                    <div class="text-gray-400 text-sm font-medium">Certification Programs</div>
+                </div>
+                <div class="p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-primary text-4xl mb-4"><i class="fas fa-briefcase"></i></div>
+                    <div class="text-4xl font-bold font-heading mb-2"><span class="counter" data-target="85">0</span>%</div>
+                    <div class="text-gray-400 text-sm font-medium">Job Placement Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Options & Certifications -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-16">
+                <!-- Flexible Modes -->
+                <div class="lg:w-1/2" data-aos="fade-right">
+                    <h3 class="text-2xl font-bold font-heading text-dark mb-8">Flexible Learning Modes</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-light">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm mr-4"><i class="fas fa-users"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">In-Person Classes</h4>
+                                <p class="text-sm text-gray-500">Interactive campus sessions in Hawassa.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-light">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm mr-4"><i class="fas fa-laptop-house"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Online Learning</h4>
+                                <p class="text-sm text-gray-500">Live & recorded sessions via Student Portal.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-light">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm mr-4"><i class="fas fa-moon"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Evening & Weekend</h4>
+                                <p class="text-sm text-gray-500">Designed for working professionals.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 border border-gray-100 rounded-xl hover:shadow-md transition bg-light">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-primary shadow-sm mr-4"><i class="fas fa-building"></i></div>
+                            <div>
+                                <h4 class="font-bold text-dark">Corporate Training</h4>
+                                <p class="text-sm text-gray-500">Custom B2B skill development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="lg:w-1/2" data-aos="fade-left">
+                    <h3 class="text-2xl font-bold font-heading text-dark mb-8">Internationally Recognized</h3>
+                    <div class="bg-darkLight text-white rounded-2xl p-8 relative overflow-hidden">
+                        <i class="fas fa-award absolute -right-10 -bottom-10 text-9xl text-white/5"></i>
+                        <h4 class="text-xl font-bold mb-4">Professional Certificates</h4>
+                        <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                            Upon successful completion of our programs, you receive industry-recognized certificates that validate your skills globally. Partnering with top tech and language institutions, HARUMA ensures your resume stands out.
+                        </p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center text-sm"><i class="fas fa-check-circle text-primary mr-3"></i> Skill-Based Verifiable Credentials</li>
+                            <li class="flex items-center text-sm"><i class="fas fa-check-circle text-primary mr-3"></i> Language Proficiency Diplomas</li>
+                            <li class="flex items-center text-sm"><i class="fas fa-check-circle text-primary mr-3"></i> Career Development & CV Support</li>
+                        </ul>
+                        <a href="#" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white px-6 py-2 rounded-full text-sm font-medium transition">View Sample Certificates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories (Testimonials) -->
+    <section class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h4 class="text-primary font-bold tracking-wider uppercase text-sm mb-2">Testimonials</h4>
+                <h2 class="text-3xl md:text-4xl font-bold font-heading text-dark">Student Success Stories</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative" data-aos="fade-up" data-aos-delay="0">
+                    <i class="fas fa-quote-left text-4xl text-primary/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-600 mb-6 relative z-10 text-sm leading-relaxed">"HARUMA Academy's Full-Stack program completely transformed my career. Within 3 months of graduating, I secured a remote job with an international tech company."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop" alt="Student" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h5 class="font-bold text-dark font-heading text-sm">Dawit T.</h5>
+                            <span class="text-xs text-gray-500">Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-quote-left text-4xl text-primary/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-600 mb-6 relative z-10 text-sm leading-relaxed">"The French language instructors are exceptional. The immersive environment and modern curriculum helped me pass my DELF B2 exam on the first try."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&auto=format&fit=crop" alt="Student" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h5 class="font-bold text-dark font-heading text-sm">Sara M.</h5>
+                            <span class="text-xs text-gray-500">Language Student</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm relative" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-quote-left text-4xl text-primary/20 absolute top-6 right-6"></i>
+                    <p class="text-gray-600 mb-6 relative z-10 text-sm leading-relaxed">"I learned Graphic Design and Social Media management here. Now I run my own agency in Hawassa. The skills taught are 100% practical."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop" alt="Student" class="w-12 h-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <h5 class="font-bold text-dark font-heading text-sm">Amanuel K.</h5>
+                            <span class="text-xs text-gray-500">Creative Director</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Gallery -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold font-heading text-dark">Life at HARUMA Academy</h2>
+                <p class="text-gray-600 mt-2">State-of-the-art facilities in Hawassa</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://images.unsplash.com/photo-1542805445-6c8672cb740f?w=600&auto=format&fit=crop" alt="Computer Lab" class="rounded-xl w-full h-48 object-cover hover:opacity-90 transition cursor-pointer shadow-sm">
+                <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&auto=format&fit=crop" alt="Language Class" class="rounded-xl w-full h-48 object-cover hover:opacity-90 transition cursor-pointer shadow-sm">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&auto=format&fit=crop" alt="Students" class="rounded-xl w-full h-48 object-cover hover:opacity-90 transition cursor-pointer shadow-sm md:col-span-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-light">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold font-heading text-dark">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="space-y-4" data-aos="fade-up">
+                <!-- FAQ Item 1 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>How do I enroll in a course?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6">
+                        <p class="text-gray-600 pb-4 text-sm">You can enroll by filling out the online registration form on our website, visiting our campus in Hawassa, or contacting us via phone/WhatsApp. Our admission team will guide you through the process.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Are the certificates internationally recognized?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6">
+                        <p class="text-gray-600 pb-4 text-sm">Yes! Our tech and AI courses follow international curriculum standards, and our language programs map directly to CEFR (Common European Framework of Reference for Languages) levels.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Do you offer online classes?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6">
+                        <p class="text-gray-600 pb-4 text-sm">Absolutely. Most of our programs are available online via our Student Portal, offering live interactive sessions and access to recorded materials for flexible learning.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <button class="faq-btn w-full px-6 py-4 text-left font-bold text-dark flex justify-between items-center focus:outline-none">
+                        <span>Are there installment payment options?</span>
+                        <i class="fas fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content bg-white px-6">
+                        <p class="text-gray-600 pb-4 text-sm">Yes, we provide flexible payment plans for our longer bootcamp and diploma programs. Please contact our admissions office for specific fee structures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-dark text-white rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                
+                <!-- Contact Info & Map -->
+                <div class="lg:w-2/5 p-10 bg-darkLight relative">
+                    <h3 class="text-2xl font-bold font-heading mb-2">Get In Touch</h3>
+                    <p class="text-gray-400 mb-8 text-sm">Ready to start your journey? Contact us today.</p>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary/20 text-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm">Our Location</h5>
+                                <p class="text-gray-400 text-sm mt-1">Main Street, Piassa Area,<br>Hawassa, Ethiopia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary/20 text-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm">Call or WhatsApp</h5>
+                                <p class="text-gray-400 text-sm mt-1">+251 911 234 567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary/20 text-primary rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm">Email Us</h5>
+                                <p class="text-gray-400 text-sm mt-1">admissions@harumaacademy.edu.et</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Map Placeholder -->
+                    <div class="w-full h-40 bg-gray-800 rounded-xl overflow-hidden relative group">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126433.00336214534!2d38.39703666579626!3d7.050516769931725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x17b1aeb59a1f4963%3A0xc300f28e21ec84e3!2sHawassa%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(1) contrast(1.2);" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:w-3/5 p-10 lg:p-16 bg-white text-dark" id="enroll">
+                    <h3 class="text-3xl font-bold font-heading mb-6">Online Registration</h3>
+                    
+                    <form id="contactForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-light">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone / WhatsApp *</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-light">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-light">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Course of Interest *</label>
+                            <select required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-light text-gray-600">
+                                <option value="">Select a Category...</option>
+                                <option value="languages">Language Programs (English, French, etc.)</option>
+                                <option value="tech">Basic IT & Microsoft Office</option>
+                                <option value="webdev">Web & Software Development</option>
+                                <option value="creative">Graphic Design & Video Editing</option>
+                                <option value="ai">Artificial Intelligence Programs</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message or Questions</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-light"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primaryHover text-white font-bold py-4 rounded-lg shadow-lg shadow-primary/30 transition transform hover:-translate-y-1">
+                            Submit Application
+                        </button>
+                        <div id="formSuccess" class="hidden text-green-600 text-sm font-medium text-center mt-4">
+                            <i class="fas fa-check-circle mr-2"></i> Application received! We will contact you shortly.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-darkLight text-white pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="font-heading font-bold text-2xl tracking-tight text-white mb-6 block">
+                        HARUMA <span class="text-primary">Academy</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Empowering Hawassa and beyond with world-class education in languages, technology, and digital creativity.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition text-gray-300 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="font-bold text-lg font-heading mb-6 border-b border-gray-800 pb-2 inline-block">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#about" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> About Us</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> All Courses</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Student Portal Login</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Verify Certificate</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Blog & News</a></li>
+                    </ul>
+                </div>
+
+                <!-- Top Courses -->
+                <div>
+                    <h4 class="font-bold text-lg font-heading mb-6 border-b border-gray-800 pb-2 inline-block">Top Courses</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> English Fluency</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Full-Stack Web Dev</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Artificial Intelligence</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> Graphic Design</a></li>
+                        <li><a href="#courses" class="text-gray-400 hover:text-primary transition text-sm flex items-center"><i class="fas fa-angle-right text-xs mr-2"></i> French DELF Prep</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="font-bold text-lg font-heading mb-6 border-b border-gray-800 pb-2 inline-block">Newsletter</h4>
+                    <p class="text-gray-400 text-sm mb-4">Subscribe to get the latest news on tech, languages, and new courses.</p>
+                    <form class="relative" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Your email address" class="w-full bg-dark border border-gray-700 rounded-lg py-3 px-4 text-sm text-white focus:outline-none focus:border-primary">
+                        <button type="submit" class="absolute right-2 top-2 bottom-2 bg-primary hover:bg-primaryHover text-white px-4 rounded-md transition text-sm font-bold">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2026 HARUMA Academy. All Rights Reserved. Located in Hawassa, Ethiopia.
+                </p>
+                <div class="flex space-x-4 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/251911234567" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition-transform z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        
+        // Initialize AOS animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Sticky Navbar styling on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('shadow-sm');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('shadow-sm');
+            }
+        });
+
+        // Tab Switching Logic for Courses
+        function openTab(evt, tabName) {
+            // Get all elements with class="tab-content" and hide them
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tab-btn" and remove the class "active"
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+                tablinks[i].classList.remove("bg-primary", "text-white", "border-primary");
+                // Reset to default styling
+                tablinks[i].classList.add("text-gray-700", "border-gray-300");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+            
+            // Force re-trigger AOS for elements inside the tab (optional enhancement)
+            AOS.refresh();
+        }
+
+        // FAQ Accordion Logic
+        const faqBtns = document.querySelectorAll('.faq-btn');
+        faqBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                
+                // Toggle active state
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.paddingTop = "0px";
+                    content.style.paddingBottom = "0px";
+                    icon.style.transform = "rotate(0deg)";
+                    this.classList.remove('text-primary');
+                } else {
+                    // Close all others
+                    document.querySelectorAll('.faq-content').forEach(c => {
+                        c.style.maxHeight = null;
+                        c.style.paddingTop = "0px";
+                        c.style.paddingBottom = "0px";
+                    });
+                    document.querySelectorAll('.faq-btn i').forEach(i => i.style.transform = "rotate(0deg)");
+                    document.querySelectorAll('.faq-btn').forEach(b => b.classList.remove('text-primary'));
+
+                    // Open clicked
+                    content.style.maxHeight = content.scrollHeight + 30 + "px"; // added extra space for padding
+                    content.style.paddingTop = "10px";
+                    content.style.paddingBottom = "20px";
+                    icon.style.transform = "rotate(180deg)";
+                    this.classList.add('text-primary');
+                }
+            });
+        });
+
+        // Form Submission Mockup
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                document.getElementById('formSuccess').classList.remove('hidden');
+                btn.innerHTML = 'Submit Application';
+                btn.disabled = false;
+                form.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('formSuccess').classList.add('hidden');
+                }, 5000);
+            }, 1500);
+        });
+
+        // Animated Counters
+        const counters = document.querySelectorAll('.counter');
+        const speed = 100; // The lower the slower
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Intersection Observer to trigger counters when visible
+        const counterSection = document.getElementById('counter-section');
+        let observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateCounters();
+                observer.disconnect(); // Run once
+            }
+        });
+        
+        if(counterSection) observer.observe(counterSection);
+
+    </script>
+</body>
+</html>
